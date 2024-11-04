@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/Documents/GitHub/Laboratorio-de-Programacao-Paralela",
-      "program": "d:/Documents/GitHub/Laboratorio-de-Programacao-Paralela/build/Debug/outDebug",
+      "cwd": "d:/Documents/GitHub/Laboratorio-de-Programacao-Paralela/MPI/Tarefa6",
+      "program": "d:/Documents/GitHub/Laboratorio-de-Programacao-Paralela/MPI/Tarefa6/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
