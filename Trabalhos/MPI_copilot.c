@@ -31,9 +31,14 @@ int main(int argc, char *argv[]) {
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-    int n = 512; // Tamanho da matriz
+    int n = 2000; // Tamanho da matriz
     double **U = criar_matriz(n);
-    double x[n];
+    double *x = (double *)malloc(n * sizeof(double));
+
+    if (x == NULL) {
+        fprintf(stderr, "Erro ao alocar memória para o vetor x\n");
+        MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
+    }
 
     double start_time, end_time;
     start_time = MPI_Wtime();
@@ -45,7 +50,13 @@ int main(int argc, char *argv[]) {
     }
 
     // Convertendo a matriz 2D para uma matriz 1D para MPI_Bcast
-    double U_flat[n * (n + 1)];
+    double *U_flat = (double *)malloc(n * (n + 1) * sizeof(double));
+
+    if (U_flat == NULL) {
+        fprintf(stderr, "Erro ao alocar memória para a matriz U_flat\n");
+        MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
+    }
+
     for (int i = 0; i < n; i++) {
         for (int j = 0; j <= n; j++) {
             U_flat[i * (n + 1) + j] = U[i][j];
@@ -76,6 +87,8 @@ int main(int argc, char *argv[]) {
     }
 
     liberarMatriz(U, n);
+    free(x);
+    free(U_flat);
 
     MPI_Finalize();
     return 0;
