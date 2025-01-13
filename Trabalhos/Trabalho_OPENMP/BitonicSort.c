@@ -34,7 +34,7 @@ void bitonic_sort(int *arr, int n) {
 
     for (k = 2; k <= power_of_2; k *= 2) {
         for (j = k / 2; j > 0; j /= 2) {
-            #pragma omp parallel for private(i)
+            #pragma omp parallel for
             for (i = 0; i < power_of_2; i++) {
                 int l = i ^ j;
                 if (l > i) {
@@ -58,15 +58,6 @@ void generate_random_array(int *arr, int n) {
     }
 }
 
-int is_sorted(int *arr, int n) {
-    for (int i = 0; i < n - 1; i++) {
-        if (arr[i] > arr[i + 1]) {
-            return 0;
-        }
-    }
-    return 1;
-}
-
 void printa_lista(int *lista, int tamanho_lista) {
 
     printf("Os elementos da lista são:\n\n");
@@ -87,13 +78,13 @@ int main(int argc, char *argv[]) {
 
     generate_random_array(arr, tam);
 
+    printa_lista(arr, tam);
+
     double start_time = omp_get_wtime();
-    printa_lista(arr, tam);
     bitonic_sort(arr, tam);
-    printa_lista(arr, tam);
     double end_time = omp_get_wtime();
 
-    int sorted = is_sorted(arr, tam);
+    printa_lista(arr, tam);
 
     printf("Número de threads: %d\n", num_threads);
     printf("Tempo de execução do Bitonic Sort: %.6f segundos\n", end_time - start_time);
