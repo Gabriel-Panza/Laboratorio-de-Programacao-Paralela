@@ -1,5 +1,5 @@
 #define TAMANHOLISTA 500000
-#define THREADS 2
+#define THREADS 1
 
 #include <stdio.h>
 #include <stdlib.h>
