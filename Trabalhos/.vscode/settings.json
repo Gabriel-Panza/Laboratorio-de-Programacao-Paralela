@@ -1,8 +1,0 @@
-{
-    "C_Cpp.default.compilerPath": "/usr/bin/gcc",
-    "files.associations": {
-        "trabalho_mpi_corrigido_16x16": "cpp",
-        "matriz.h": "c",
-        "stdio.h": "c"
-    }
-}
